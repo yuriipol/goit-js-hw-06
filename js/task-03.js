@@ -31,3 +31,4 @@ images.forEach((element) => {
     </li>`
   );
 });
+ulRef.setAttribute("style", "display: flex;");
