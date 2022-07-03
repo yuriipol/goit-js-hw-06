@@ -14,10 +14,22 @@ const ingredients = [
 ? Добавит элементу класс item.
 ? После чего вставит все <li> за одну операцию в список ul#ingredients.
 */
+//! 1-й Способ (Oldschool)
+// const ulRef = document.querySelector("#ingredients");
+
+// for (const ingredient of ingredients) {
+//   const liRef = document.createElement("li");
+//   liRef.classList.add("item");
+//   liRef.textContent = ingredient;
+//   ulRef.append(liRef);
+// }
+//! 2-й способ через map()
 const ulRef = document.querySelector("#ingredients");
-for (const ingredient of ingredients) {
+
+const elements = ingredients.map((option) => {
   const liRef = document.createElement("li");
-  liRef.classList = "item";
-  liRef.textContent = ingredient;
-  ulRef.append(liRef);
-}
+  liRef.classList.add("item");
+  liRef.textContent = option;
+  return liRef;
+});
+ulRef.append(...elements);
