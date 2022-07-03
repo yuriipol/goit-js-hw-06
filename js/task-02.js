@@ -23,13 +23,29 @@ const ingredients = [
 //   liRef.textContent = ingredient;
 //   ulRef.append(liRef);
 // }
+
 //! 2-й способ через map()
+// const ulRef = document.querySelector("#ingredients");
+
+// const elements = ingredients.map((ingredient) => {
+//   const liRef = document.createElement("li");
+//   liRef.classList.add("item");
+//   liRef.textContent = ingredient;
+//   return liRef;
+// });
+// ulRef.append(...elements);
+
+//! 3-й способ через функцию
 const ulRef = document.querySelector("#ingredients");
 
-const elements = ingredients.map((option) => {
-  const liRef = document.createElement("li");
-  liRef.classList.add("item");
-  liRef.textContent = option;
-  return liRef;
-});
+const addIngredients = (ingredients) => {
+  return ingredients.map((ingredient) => {
+    const liRef = document.createElement("li");
+    liRef.classList.add("item");
+    liRef.textContent = ingredient;
+    return liRef;
+  });
+};
+
+const elements = addIngredients(ingredients);
 ulRef.append(...elements);
