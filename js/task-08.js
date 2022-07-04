@@ -15,8 +15,14 @@ form.addEventListener("submit", onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
+
   formData.forEach((value, name) => {
-    console.log("~ value", value);
-    console.log("~ name", name);
+    if (value === "" || name === "") {
+      console.log("alert!!! Все поля должны быть заполнены");
+    } else {
+      const obj = { name, value };
+
+      return console.log(obj);
+    }
   });
 }
