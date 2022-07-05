@@ -16,13 +16,17 @@ function onFormSubmit(event) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
 
-  formData.forEach((value, name) => {
-    if (value === "" || name === "") {
-      console.log("alert!!! Все поля должны быть заполнены");
-    } else {
-      const obj = { name, value };
+  const valuesArray = [...formData.values()];
+  const isEmptyFieldExists = valuesArray.some((el) => {
+    return el.length === 0;
+  });
+  if (isEmptyFieldExists) {
+    alert("Введіть всі дані!");
+    return;
+  }
 
-      return console.log(obj);
-    }
+  console.log({
+    email: formData.get("email"),
+    password: formData.get("password"),
   });
 }
