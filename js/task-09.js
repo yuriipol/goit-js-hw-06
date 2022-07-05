@@ -17,7 +17,13 @@ function getRandomHexColor() {
 const backgroundVidjet = document.querySelector(".widget");
 const btnChangeColor = backgroundVidjet.querySelector(".change-color");
 const textNameColor = backgroundVidjet.querySelector(".color");
+const bodyChangeColor = window.document.body;
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+btnChangeColor.addEventListener("click", () => {
+  bodyChangeColor.style.backgroundColor = getRandomHexColor();
+  textNameColor.textContent = getRandomHexColor();
+});
