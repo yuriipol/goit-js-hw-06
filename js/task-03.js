@@ -35,24 +35,24 @@ const images = [
 // ulRef.setAttribute("style", "display: flex;");
 
 //! 2-й варант с деструктуризацией
-const ulRef = document.querySelector(".gallery");
-// console.log(ulRef);
-images.forEach(({ url, alt }) => {
-  ulRef.insertAdjacentHTML(
-    "afterbegin",
-    `
-    <li>
-      <img src="${url}" alt = "${alt}" width = "300" height = "150"></img>
-    </li>`
-  );
-});
-ulRef.style.display = "flex";
+// const ulRef = document.querySelector(".gallery");
+// // console.log(ulRef);
+// images.forEach(({ url, alt } = {}) => {
+//   ulRef.insertAdjacentHTML(
+//     "afterbegin",
+//     `
+//     <li>
+//       <img src="${url}" alt = "${alt}" width = "300" height = "150"></img>
+//     </li>`
+//   );
+// });
+// ulRef.style.display = "flex";
 
 //! 3-й способ без insertAdjacentHTML, но с деструктуризацией и через функцию с попощью map()
 
 // const ulRef = document.querySelector(".gallery");
 
-// const makeListImages = ({ url, alt }) => {
+// const makeListImages = ({ url, alt } = {}) => {
 //   const liRef = document.createElement("li");
 //   const imgRef = document.createElement("img");
 //   imgRef.src = url;
@@ -67,3 +67,18 @@ ulRef.style.display = "flex";
 // ulRef.append(...listImages);
 // // ulRef.setAttribute("style", "display: flex;");
 // ulRef.style.display = "flex";
+
+//! 4-й способ с функцией, деструктуризацией и insertAdjacentHTML
+const ulRef = document.querySelector(".gallery");
+
+const makeGallaryCards = ({ url, alt } = {}) => {
+  return `
+    <li>
+      <img src="${url}" alt = "${alt}" width = "300" height = "150"></img>
+    </li>`;
+};
+const gallaryCardsArray = images.map((el) => {
+  return makeGallaryCards(el);
+});
+ulRef.insertAdjacentHTML("afterbegin", gallaryCardsArray.join(""));
+ulRef.style.display = "flex";
