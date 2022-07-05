@@ -25,6 +25,31 @@ function getRandomHexColor() {
 ? Создай функцию destroyBoxes(), которая очищает содержимое div#boxes, тем самым удаляя все созданные элементы.
 */
 
+const input = document.querySelector("input");
+const btnCreate = document.querySelector("[data-create]");
+const btnClear = document.querySelector("[data-destroy]");
+const boxes = document.querySelector("#boxes");
+
+const createBoxes = () => {
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < Number(input.value); i += 1) {
+    const divEl = document.createElement("div");
+    const width = 30 + 10 * i;
+    divEl.style.width = `${width}px`;
+    divEl.style.height = `${width}px`;
+    divEl.style.backgroundColor = getRandomHexColor();
+    frag.append(divEl);
+  }
+  boxes.append(frag);
+};
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+const destroyBoxes = () => {
+  boxes.innerHTML = "";
+};
+btnCreate.addEventListener("click", createBoxes);
+
+btnClear.addEventListener("click", destroyBoxes);
