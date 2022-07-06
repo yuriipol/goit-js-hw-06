@@ -29,4 +29,5 @@ function onFormSubmit(event) {
     email: formData.get("email"),
     password: formData.get("password"),
   });
+  form.reset();
 }
