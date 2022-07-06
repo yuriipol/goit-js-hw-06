@@ -41,13 +41,7 @@ function onInputBlur() {
   if (refs.input.value.length === intTotallenght) {
     refs.input.classList.remove("invalid");
     refs.input.classList.add("valid");
-  } else if (refs.input.value.length === 0) {
-    refs.input.classList.remove("valid");
-    refs.input.classList.add("invalid");
-  } else if (
-    refs.input.value.length !== intTotallenght &&
-    refs.input.value.length !== 0
-  ) {
+  } else if (refs.input.value.length !== intTotallenght) {
     refs.input.classList.remove("valid");
     refs.input.classList.add("invalid");
   }
